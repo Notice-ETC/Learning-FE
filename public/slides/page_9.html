@@ -1,0 +1,197 @@
+<!DOCTYPE html><html lang="zh"><head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   JavaScript vs TypeScript
+  </title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <style>
+   body {width: 1280px; min-height: 752px; overflow: hidden; margin: 0;
+            padding: 0;}
+        .slide {
+            width: 1280px;
+            min-height: 752px;
+            position: relative;
+            background: linear-gradient(to bottom right, #f5f5f5, #e0e0e0);
+            color: #333333;
+        }
+        .code-block {
+            font-family: 'Courier New', monospace;
+            border-radius: 4px;
+            padding: 12px;
+            margin: 8px 0;
+            overflow-x: auto;
+        }
+        .js-code {
+            background-color: rgba(255, 224, 189, 0.3);
+            border-left: 4px solid #f1b60e;
+        }
+        .ts-code {
+            background-color: rgba(156, 39, 176, 0.1);
+            border-left: 4px solid #9C27B0;
+        }
+        .comparison-item {
+            transition: all 0.3s ease;
+        }
+        .comparison-item:hover {
+            transform: translateY(-2px);
+        }
+    
+html {
+    overflow: hidden;
+}
+  </style>
+ <style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.mb-2{margin-bottom:0.5rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mr-2{margin-right:0.5rem}.mr-3{margin-right:0.75rem}.mt-1{margin-top:0.25rem}.mt-4{margin-top:1rem}.flex{display:flex}.h-1{height:0.25rem}.w-1\/2{width:50%}.w-24{width:6rem}.flex-grow{flex-grow:1}.flex-col{flex-direction:column}.items-start{align-items:flex-start}.items-center{align-items:center}.space-y-3 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.75rem * var(--tw-space-y-reverse))}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.bg-gray-100{--tw-bg-opacity:1;background-color:rgb(243 244 246 / var(--tw-bg-opacity, 1))}.bg-purple-500{--tw-bg-opacity:1;background-color:rgb(168 85 247 / var(--tw-bg-opacity, 1))}.bg-purple-600{--tw-bg-opacity:1;background-color:rgb(147 51 234 / var(--tw-bg-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-yellow-500{--tw-bg-opacity:1;background-color:rgb(234 179 8 / var(--tw-bg-opacity, 1))}.p-12{padding:3rem}.p-2{padding:0.5rem}.p-3{padding:0.75rem}.p-4{padding:1rem}.pl-4{padding-left:1rem}.pr-4{padding-right:1rem}.text-center{text-align:center}.text-2xl{font-size:1.5rem;line-height:2rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.font-bold{font-weight:700}.font-semibold{font-weight:600}.italic{font-style:italic}.text-gray-600{--tw-text-opacity:1;color:rgb(75 85 99 / var(--tw-text-opacity, 1))}.text-gray-700{--tw-text-opacity:1;color:rgb(55 65 81 / var(--tw-text-opacity, 1))}.text-gray-800{--tw-text-opacity:1;color:rgb(31 41 55 / var(--tw-text-opacity, 1))}.text-purple-600{--tw-text-opacity:1;color:rgb(147 51 234 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-yellow-500{--tw-text-opacity:1;color:rgb(234 179 8 / var(--tw-text-opacity, 1))}.shadow-inner{--tw-shadow:inset 0 2px 4px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:inset 0 2px 4px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-md{--tw-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}</style></head>
+ <body class="">
+  <div class="slide flex flex-col p-12" style=" overflow: hidden;">
+   <!-- Header -->
+   <div class="mb-6">
+    <h1 class="text-4xl font-bold mb-2 text-gray-800">
+     JavaScript vs TypeScript
+    </h1>
+    <div class="w-24 h-1 bg-purple-600">
+    </div>
+   </div>
+   <!-- Introduction -->
+   <div class="mb-4">
+    <p class="text-xl text-gray-700">
+     TypeScript = JavaScript + Types
+    </p>
+   </div>
+   <!-- Comparison Section -->
+   <div class="flex flex-grow">
+    <!-- JavaScript Column -->
+    <div class="w-1/2 pr-4">
+     <div class="bg-white rounded-lg shadow-md p-4 mb-4">
+      <div class="flex items-center mb-2">
+       <div class="bg-yellow-500 text-white rounded-full p-2 mr-3">
+        <i class="fab fa-js text-xl">
+        </i>
+       </div>
+       <h2 class="text-2xl font-semibold text-gray-800">
+        JavaScript
+       </h2>
+      </div>
+      <ul class="space-y-3">
+       <li class="comparison-item flex items-start">
+        <i class="fas fa-check-circle text-yellow-500 mt-1 mr-2">
+        </i>
+        <span>
+         Dynamic typing
+        </span>
+       </li>
+       <li class="comparison-item flex items-start">
+        <i class="fas fa-check-circle text-yellow-500 mt-1 mr-2">
+        </i>
+        <span>
+         No type checking
+        </span>
+       </li>
+       <li class="comparison-item flex items-start">
+        <i class="fas fa-check-circle text-yellow-500 mt-1 mr-2">
+        </i>
+        <span>
+         Errors found at runtime
+        </span>
+       </li>
+       <li class="comparison-item flex items-start">
+        <i class="fas fa-check-circle text-yellow-500 mt-1 mr-2">
+        </i>
+        <span>
+         Flexible but risky
+        </span>
+       </li>
+      </ul>
+     </div>
+     <!-- JavaScript Code Example -->
+     <div class="bg-white rounded-lg shadow-md p-4">
+      <h3 class="text-lg font-semibold mb-2 text-gray-700">
+       JavaScript Example:
+      </h3>
+      <div class="code-block js-code">
+       <pre>function calculatePrice(price, quantity) {
+  return price * quantity;
+}
+
+calculatePrice(&#34;100&#34;, 2);  // &#34;100100&#34; ❌ Bug!</pre>
+      </div>
+      <p class="text-sm text-gray-600 italic">
+       JavaScript won&#39;t warn you about these mistakes!
+      </p>
+     </div>
+    </div>
+    <!-- TypeScript Column -->
+    <div class="w-1/2 pl-4">
+     <div class="bg-white rounded-lg shadow-md p-4 mb-4">
+      <div class="flex items-center mb-2">
+       <div class="bg-purple-500 text-white rounded-full p-2 mr-3">
+        <i class="fab fa-js-square text-xl">
+        </i>
+       </div>
+       <h2 class="text-2xl font-semibold text-gray-800">
+        TypeScript
+       </h2>
+      </div>
+      <ul class="space-y-3">
+       <li class="comparison-item flex items-start">
+        <i class="fas fa-check-circle text-purple-600 mt-1 mr-2">
+        </i>
+        <span>
+         Static typing
+        </span>
+       </li>
+       <li class="comparison-item flex items-start">
+        <i class="fas fa-check-circle text-purple-600 mt-1 mr-2">
+        </i>
+        <span>
+         Type checking at compile time
+        </span>
+       </li>
+       <li class="comparison-item flex items-start">
+        <i class="fas fa-check-circle text-purple-600 mt-1 mr-2">
+        </i>
+        <span>
+         Errors found before running
+        </span>
+       </li>
+       <li class="comparison-item flex items-start">
+        <i class="fas fa-check-circle text-purple-600 mt-1 mr-2">
+        </i>
+        <span>
+         Safe and predictable
+        </span>
+       </li>
+      </ul>
+     </div>
+     <!-- TypeScript Code Example -->
+     <div class="bg-white rounded-lg shadow-md p-4">
+      <h3 class="text-lg font-semibold mb-2 text-gray-700">
+       TypeScript Example:
+      </h3>
+      <div class="code-block ts-code">
+       <pre>function calculatePrice(price: number, quantity: number): number {
+  return price * quantity;
+}
+
+calculatePrice(&#34;100&#34;, 2);  // ❌ Error: string not assignable</pre>
+      </div>
+      <p class="text-sm text-gray-600 italic">
+       Errors caught at development time! 🎯
+      </p>
+     </div>
+    </div>
+   </div>
+   <!-- Footer Summary -->
+   <div class="mt-4 bg-gray-100 rounded-lg p-3 shadow-inner">
+    <p class="text-center text-gray-700">
+     <i class="fas fa-lightbulb text-yellow-500 mr-2">
+     </i>
+     TypeScript helps you catch errors early and write more reliable code
+    </p>
+   </div>
+  </div>
+ 
+
+</body></html>

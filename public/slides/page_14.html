@@ -1,0 +1,253 @@
+<!DOCTYPE html><html lang="zh"><head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   MongoDB and Mongoose Introduction
+  </title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
+  <script src="https://d3js.org/d3.v7.min.js">
+  </script>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <style>
+   body {width: 1280px; min-height: 832px; overflow: hidden; margin: 0;
+            padding: 0;}
+        .slide {
+            width: 1280px;
+            min-height: 832px;
+            position: relative;
+            background: linear-gradient(to bottom right, #f5f5f5, #e0e0e0);
+            color: #333333;
+        }
+        .comparison-table {
+            border-collapse: separate;
+            border-spacing: 0;
+            width: 100%;
+        }
+        .comparison-table th, .comparison-table td {
+            padding: 10px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background-color: #9C27B0;
+            color: white;
+        }
+        .comparison-table tr:nth-child(even) {
+            background-color: rgba(156, 39, 176, 0.1);
+        }
+        .feature-item {
+            transition: all 0.3s ease;
+        }
+        .feature-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    
+html {
+    overflow: hidden;
+}
+  </style>
+ <style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.mb-2{margin-bottom:0.5rem}.mb-3{margin-bottom:0.75rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mr-2{margin-right:0.5rem}.mr-3{margin-right:0.75rem}.mt-4{margin-top:1rem}.mt-6{margin-top:1.5rem}.flex{display:flex}.grid{display:grid}.h-1{height:0.25rem}.w-1\/2{width:50%}.w-24{width:6rem}.flex-grow{flex-grow:1}.grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.flex-col{flex-direction:column}.items-center{align-items:center}.gap-4{gap:1rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.bg-blue-500{--tw-bg-opacity:1;background-color:rgb(59 130 246 / var(--tw-bg-opacity, 1))}.bg-gray-800{--tw-bg-opacity:1;background-color:rgb(31 41 55 / var(--tw-bg-opacity, 1))}.bg-green-500{--tw-bg-opacity:1;background-color:rgb(34 197 94 / var(--tw-bg-opacity, 1))}.bg-orange-500{--tw-bg-opacity:1;background-color:rgb(249 115 22 / var(--tw-bg-opacity, 1))}.bg-purple-500{--tw-bg-opacity:1;background-color:rgb(168 85 247 / var(--tw-bg-opacity, 1))}.bg-purple-600{--tw-bg-opacity:1;background-color:rgb(147 51 234 / var(--tw-bg-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.p-12{padding:3rem}.p-2{padding:0.5rem}.p-4{padding:1rem}.pl-6{padding-left:1.5rem}.pr-6{padding-right:1.5rem}.text-center{text-align:center}.text-2xl{font-size:1.5rem;line-height:2rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-bold{font-weight:700}.font-semibold{font-weight:600}.text-blue-600{--tw-text-opacity:1;color:rgb(37 99 235 / var(--tw-text-opacity, 1))}.text-gray-100{--tw-text-opacity:1;color:rgb(243 244 246 / var(--tw-text-opacity, 1))}.text-gray-400{--tw-text-opacity:1;color:rgb(156 163 175 / var(--tw-text-opacity, 1))}.text-gray-500{--tw-text-opacity:1;color:rgb(107 114 128 / var(--tw-text-opacity, 1))}.text-gray-600{--tw-text-opacity:1;color:rgb(75 85 99 / var(--tw-text-opacity, 1))}.text-gray-700{--tw-text-opacity:1;color:rgb(55 65 81 / var(--tw-text-opacity, 1))}.text-gray-800{--tw-text-opacity:1;color:rgb(31 41 55 / var(--tw-text-opacity, 1))}.text-green-600{--tw-text-opacity:1;color:rgb(22 163 74 / var(--tw-text-opacity, 1))}.text-purple-600{--tw-text-opacity:1;color:rgb(147 51 234 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.shadow{--tw-shadow:0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}</style></head>
+ <body class="">
+  <div class="slide flex flex-col p-12" style=" overflow: hidden;">
+   <!-- Header -->
+   <div class="mb-6">
+    <h1 class="text-4xl font-bold mb-2 text-gray-800">
+     MongoDB and Mongoose Introduction
+    </h1>
+    <div class="w-24 h-1 bg-purple-600">
+    </div>
+   </div>
+   <!-- Main Content -->
+   <div class="flex flex-grow">
+    <!-- Left Column -->
+    <div class="w-1/2 pr-6">
+     <!-- MongoDB Introduction -->
+     <div class="mb-6">
+      <h2 class="text-2xl font-semibold mb-3 flex items-center">
+       <i class="fas fa-database text-purple-600 mr-3">
+       </i>
+       What is MongoDB?
+      </h2>
+      <p class="text-gray-700 mb-2">
+       <span class="font-bold">
+        NoSQL Document Database
+       </span>
+       that stores data in flexible, JSON-like documents.
+      </p>
+      <p class="text-gray-700">
+       Unlike traditional SQL databases, MongoDB allows nested objects and arrays, making it ideal for complex data structures.
+      </p>
+     </div>
+     <!-- SQL vs NoSQL Comparison -->
+     <div>
+      <h2 class="text-2xl font-semibold mb-3 flex items-center">
+       <i class="fas fa-exchange-alt text-blue-600 mr-3">
+       </i>
+       SQL vs NoSQL
+      </h2>
+      <table class="comparison-table mb-4">
+       <thead>
+        <tr>
+         <th style="width: 30%">
+          Feature
+         </th>
+         <th style="width: 35%">
+          SQL
+         </th>
+         <th style="width: 35%">
+          NoSQL (MongoDB)
+         </th>
+        </tr>
+       </thead>
+       <tbody>
+        <tr>
+         <td>
+          Structure
+         </td>
+         <td>
+          Tables with rows and columns
+         </td>
+         <td>
+          Documents with key-value pairs
+         </td>
+        </tr>
+        <tr>
+         <td>
+          Schema
+         </td>
+         <td>
+          Fixed schema
+         </td>
+         <td>
+          Dynamic schema
+         </td>
+        </tr>
+        <tr>
+         <td>
+          Relationships
+         </td>
+         <td>
+          Joins between tables
+         </td>
+         <td>
+          Nested documents and references
+         </td>
+        </tr>
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <!-- Right Column -->
+    <div class="w-1/2 pl-6">
+     <!-- Mongoose Introduction -->
+     <div class="mb-6">
+      <h2 class="text-2xl font-semibold mb-3 flex items-center">
+       <i class="fas fa-bezier-curve text-green-600 mr-3">
+       </i>
+       What is Mongoose?
+      </h2>
+      <p class="text-gray-700 mb-2">
+       <span class="font-bold">
+        ODM (Object Data Modeling)
+       </span>
+       library for MongoDB.
+      </p>
+      <p class="text-gray-700">
+       Mongoose provides a structured approach to database interactions with Node.js.
+      </p>
+     </div>
+     <!-- Mongoose Features -->
+     <div class="grid grid-cols-2 gap-4">
+      <div class="feature-item bg-white rounded-lg shadow p-4">
+       <div class="flex items-center mb-2">
+        <div class="bg-blue-500 text-white rounded-full p-2 mr-2">
+         <i class="fas fa-shield-alt">
+         </i>
+        </div>
+        <h3 class="font-semibold">
+         Schema Validation
+        </h3>
+       </div>
+       <p class="text-sm text-gray-600">
+        Define data structure and validation rules
+       </p>
+      </div>
+      <div class="feature-item bg-white rounded-lg shadow p-4">
+       <div class="flex items-center mb-2">
+        <div class="bg-green-500 text-white rounded-full p-2 mr-2">
+         <i class="fas fa-check-circle">
+         </i>
+        </div>
+        <h3 class="font-semibold">
+         Data Modeling
+        </h3>
+       </div>
+       <p class="text-sm text-gray-600">
+        Create reusable models for your data
+       </p>
+      </div>
+      <div class="feature-item bg-white rounded-lg shadow p-4">
+       <div class="flex items-center mb-2">
+        <div class="bg-purple-500 text-white rounded-full p-2 mr-2">
+         <i class="fas fa-search">
+         </i>
+        </div>
+        <h3 class="font-semibold">
+         Query Methods
+        </h3>
+       </div>
+       <p class="text-sm text-gray-600">
+        Easy database querying
+       </p>
+      </div>
+      <div class="feature-item bg-white rounded-lg shadow p-4">
+       <div class="flex items-center mb-2">
+        <div class="bg-orange-500 text-white rounded-full p-2 mr-2">
+         <i class="fas fa-code">
+         </i>
+        </div>
+        <h3 class="font-semibold">
+         Business Logic
+        </h3>
+       </div>
+       <p class="text-sm text-gray-600">
+        Add methods to your models
+       </p>
+      </div>
+     </div>
+     <!-- Example -->
+     <div class="mt-6 bg-gray-800 text-gray-100 p-4 rounded-lg">
+      <p class="text-sm font-semibold mb-2">
+       Without Mongoose:
+      </p>
+      <p class="text-xs mb-3 text-gray-400">
+       // Raw MongoDB
+      </p>
+      <p class="text-sm mb-3">
+       db.collection(&#39;users&#39;).insertOne({...})
+      </p>
+      <p class="text-sm font-semibold mb-2">
+       With Mongoose:
+      </p>
+      <p class="text-xs mb-3 text-gray-400">
+       // Clean and structured
+      </p>
+      <p class="text-sm">
+       const user = new User({...});
+       <br/>
+       await user.save();
+      </p>
+     </div>
+    </div>
+   </div>
+   <!-- Footer -->
+   <div class="mt-4 text-center text-gray-500 text-sm">
+    <p>
+     MongoDB + Mongoose = Powerful database solution for Node.js applications
+    </p>
+   </div>
+  </div>
+ 
+
+</body></html>

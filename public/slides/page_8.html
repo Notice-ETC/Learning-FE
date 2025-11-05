@@ -1,0 +1,237 @@
+<!DOCTYPE html><html lang="zh"><head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Technology Stack Overview
+  </title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
+  <script src="https://d3js.org/d3.v7.min.js">
+  </script>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <style>
+   body {width: 1280px; min-height: 720px; overflow: hidden; margin: 0;
+            padding: 0;}
+        .slide {
+            width: 1280px;
+            min-height: 720px;
+            position: relative;
+            background: linear-gradient(to bottom right, #f5f5f5, #e0e0e0);
+            color: #333333;
+        }
+        .tech-card {
+            transition: all 0.3s ease;
+        }
+        .tech-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        .connector {
+            position: absolute;
+            background: linear-gradient(90deg, #9C27B0, #4CAF50);
+            height: 3px;
+            z-index: 0;
+        }
+    
+html {
+    overflow: hidden;
+}
+  </style>
+ <style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.relative{position:relative}.z-10{z-index:10}.mb-1{margin-bottom:0.25rem}.mb-2{margin-bottom:0.5rem}.mb-3{margin-bottom:0.75rem}.mb-6{margin-bottom:1.5rem}.mr-2{margin-right:0.5rem}.mt-1{margin-top:0.25rem}.mt-2{margin-top:0.5rem}.mt-4{margin-top:1rem}.mt-8{margin-top:2rem}.flex{display:flex}.grid{display:grid}.h-1{height:0.25rem}.w-24{width:6rem}.flex-grow{flex-grow:1}.list-disc{list-style-type:disc}.grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.grid-cols-5{grid-template-columns:repeat(5, minmax(0, 1fr))}.flex-col{flex-direction:column}.items-start{align-items:flex-start}.items-center{align-items:center}.gap-4{gap:1rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.bg-blue-500{--tw-bg-opacity:1;background-color:rgb(59 130 246 / var(--tw-bg-opacity, 1))}.bg-green-500{--tw-bg-opacity:1;background-color:rgb(34 197 94 / var(--tw-bg-opacity, 1))}.bg-green-600{--tw-bg-opacity:1;background-color:rgb(22 163 74 / var(--tw-bg-opacity, 1))}.bg-orange-500{--tw-bg-opacity:1;background-color:rgb(249 115 22 / var(--tw-bg-opacity, 1))}.bg-purple-500{--tw-bg-opacity:1;background-color:rgb(168 85 247 / var(--tw-bg-opacity, 1))}.bg-purple-600{--tw-bg-opacity:1;background-color:rgb(147 51 234 / var(--tw-bg-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.p-12{padding:3rem}.p-3{padding:0.75rem}.p-4{padding:1rem}.p-6{padding:1.5rem}.pl-4{padding-left:1rem}.text-center{text-align:center}.text-2xl{font-size:1.5rem;line-height:2rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-bold{font-weight:700}.font-semibold{font-weight:600}.text-gray-500{--tw-text-opacity:1;color:rgb(107 114 128 / var(--tw-text-opacity, 1))}.text-gray-600{--tw-text-opacity:1;color:rgb(75 85 99 / var(--tw-text-opacity, 1))}.text-gray-700{--tw-text-opacity:1;color:rgb(55 65 81 / var(--tw-text-opacity, 1))}.text-gray-800{--tw-text-opacity:1;color:rgb(31 41 55 / var(--tw-text-opacity, 1))}.text-green-500{--tw-text-opacity:1;color:rgb(34 197 94 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}</style></head>
+ <body class="">
+  <div class="slide flex flex-col p-12" style=" overflow: hidden;">
+   <!-- Header -->
+   <div class="mb-6">
+    <h1 class="text-4xl font-bold mb-2 text-gray-800">
+     Technology Stack Overview
+    </h1>
+    <div class="w-24 h-1 bg-purple-600">
+    </div>
+   </div>
+   <!-- Introduction -->
+   <div class="mb-6">
+    <p class="text-xl text-gray-700">
+     Our backend uses these complementary technologies that work together seamlessly:
+    </p>
+   </div>
+   <!-- Technology Stack Diagram -->
+   <div class="relative flex-grow flex flex-col">
+    <!-- Technology Cards -->
+    <div class="grid grid-cols-5 gap-4 relative z-10">
+     <!-- Node.js -->
+     <div class="tech-card bg-white rounded-lg shadow-lg p-4 flex flex-col items-center">
+      <div class="bg-green-500 text-white rounded-full p-3 mb-3">
+       <i class="fab fa-node-js text-2xl">
+       </i>
+      </div>
+      <h3 class="text-lg font-semibold mb-1">
+       Node.js
+      </h3>
+      <p class="text-sm text-gray-600 text-center">
+       JavaScript Runtime
+      </p>
+      <ul class="text-xs mt-2 text-gray-600 list-disc pl-4">
+       <li>
+        JavaScript everywhere
+       </li>
+       <li>
+        Fast execution
+       </li>
+      </ul>
+     </div>
+     <!-- Express.js -->
+     <div class="tech-card bg-white rounded-lg shadow-lg p-4 flex flex-col items-center">
+      <div class="bg-blue-500 text-white rounded-full p-3 mb-3">
+       <i class="fas fa-network-wired text-2xl">
+       </i>
+      </div>
+      <h3 class="text-lg font-semibold mb-1">
+       Express.js
+      </h3>
+      <p class="text-sm text-gray-600 text-center">
+       Web Framework
+      </p>
+      <ul class="text-xs mt-2 text-gray-600 list-disc pl-4">
+       <li>
+        Simple &amp; flexible
+       </li>
+       <li>
+        Industry standard
+       </li>
+      </ul>
+     </div>
+     <!-- TypeScript -->
+     <div class="tech-card bg-white rounded-lg shadow-lg p-4 flex flex-col items-center">
+      <div class="bg-purple-500 text-white rounded-full p-3 mb-3">
+       <i class="fas fa-code text-2xl">
+       </i>
+      </div>
+      <h3 class="text-lg font-semibold mb-1">
+       TypeScript
+      </h3>
+      <p class="text-sm text-gray-600 text-center">
+       Type Safety
+      </p>
+      <ul class="text-xs mt-2 text-gray-600 list-disc pl-4">
+       <li>
+        Catch errors early
+       </li>
+       <li>
+        Better code quality
+       </li>
+      </ul>
+     </div>
+     <!-- MongoDB -->
+     <div class="tech-card bg-white rounded-lg shadow-lg p-4 flex flex-col items-center">
+      <div class="bg-green-600 text-white rounded-full p-3 mb-3">
+       <i class="fas fa-database text-2xl">
+       </i>
+      </div>
+      <h3 class="text-lg font-semibold mb-1">
+       MongoDB
+      </h3>
+      <p class="text-sm text-gray-600 text-center">
+       Database
+      </p>
+      <ul class="text-xs mt-2 text-gray-600 list-disc pl-4">
+       <li>
+        Flexible structure
+       </li>
+       <li>
+        Easy to scale
+       </li>
+      </ul>
+     </div>
+     <!-- Mongoose -->
+     <div class="tech-card bg-white rounded-lg shadow-lg p-4 flex flex-col items-center">
+      <div class="bg-orange-500 text-white rounded-full p-3 mb-3">
+       <i class="fas fa-project-diagram text-2xl">
+       </i>
+      </div>
+      <h3 class="text-lg font-semibold mb-1">
+       Mongoose
+      </h3>
+      <p class="text-sm text-gray-600 text-center">
+       ODM Library
+      </p>
+      <ul class="text-xs mt-2 text-gray-600 list-disc pl-4">
+       <li>
+        Schema validation
+       </li>
+       <li>
+        Easy database interaction
+       </li>
+      </ul>
+     </div>
+    </div>
+    <!-- Integration Benefits -->
+    <div class="mt-8 bg-white rounded-lg shadow-lg p-6">
+     <h3 class="text-xl font-semibold mb-3 text-gray-800">
+      Why This Stack Works Well Together
+     </h3>
+     <div class="grid grid-cols-3 gap-4">
+      <div class="flex items-start">
+       <i class="fas fa-check-circle text-green-500 mt-1 mr-2">
+       </i>
+       <p class="text-sm text-gray-700">
+        TypeScript adds safety to JavaScript
+       </p>
+      </div>
+      <div class="flex items-start">
+       <i class="fas fa-check-circle text-green-500 mt-1 mr-2">
+       </i>
+       <p class="text-sm text-gray-700">
+        Express handles HTTP requests
+       </p>
+      </div>
+      <div class="flex items-start">
+       <i class="fas fa-check-circle text-green-500 mt-1 mr-2">
+       </i>
+       <p class="text-sm text-gray-700">
+        Mongoose simplifies MongoDB
+       </p>
+      </div>
+     </div>
+    </div>
+   </div>
+   <!-- Footer -->
+   <div class="mt-4 text-center text-gray-500">
+    <p>
+     All technologies work together to create powerful backends!
+    </p>
+   </div>
+  <div class="connector" style="width: 16px; top: 272px; left: 272px; transform: rotate(0deg);"></div><div class="connector" style="width: 16px; top: 272px; left: 512px; transform: rotate(0deg);"></div><div class="connector" style="width: 16px; top: 272px; left: 752px; transform: rotate(0deg);"></div><div class="connector" style="width: 16px; top: 272px; left: 992px; transform: rotate(0deg);"></div></div>
+  <script>
+   // Add connecting lines between technology cards
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.tech-card');
+            
+            for (let i = 0; i < cards.length - 1; i++) {
+                const card1 = cards[i];
+                const card2 = cards[i + 1];
+                
+                const rect1 = card1.getBoundingClientRect();
+                const rect2 = card2.getBoundingClientRect();
+                
+                const x1 = rect1.right;
+                const y1 = rect1.top + rect1.height / 2;
+                const x2 = rect2.left;
+                const y2 = rect2.top + rect2.height / 2;
+                
+                const length = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+                const angle = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
+                
+                const connector = document.createElement('div');
+                connector.className = 'connector';
+                connector.style.width = `${length}px`;
+                connector.style.top = `${y1}px`;
+                connector.style.left = `${x1}px`;
+                connector.style.transform = `rotate(${angle}deg)`;
+                
+                document.querySelector('.slide').appendChild(connector);
+            }
+        });
+  </script>
+ 
+
+</body></html>

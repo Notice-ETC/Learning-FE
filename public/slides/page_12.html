@@ -1,0 +1,336 @@
+<!DOCTYPE html><html lang="zh"><head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Creating Simple API Endpoints
+  </title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <style>
+   body {width: 1280px; min-height: 824px; overflow: hidden; margin: 0;
+            padding: 0;}
+        .slide {
+            width: 1280px;
+            min-height: 824px;
+            position: relative;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: #ffffff;
+        }
+        .code-block {
+            font-family: 'Courier New', monospace;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 4px;
+            padding: 12px;
+            margin: 8px 0;
+            overflow-x: auto;
+        }
+        .highlight {
+            color: #4CAF50;
+        }
+        .comment {
+            color: #888888;
+        }
+        .string {
+            color: #FF9800;
+        }
+        .function {
+            color: #9C27B0;
+        }
+        .keyword {
+            color: #E91E63;
+        }
+        .endpoint-card {
+            transition: all 0.3s ease;
+        }
+        .endpoint-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+        }
+    
+html {
+    overflow: hidden;
+}
+  </style>
+ <style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.mb-2{margin-bottom:0.5rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mr-2{margin-right:0.5rem}.mt-4{margin-top:1rem}.flex{display:flex}.grid{display:grid}.h-1{height:0.25rem}.w-1\/2{width:50%}.w-32{width:8rem}.flex-1{flex:1 1 0%}.grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.flex-col{flex-direction:column}.items-center{align-items:center}.gap-2{gap:0.5rem}.rounded{border-radius:0.25rem}.rounded-lg{border-radius:0.5rem}.bg-gray-700{--tw-bg-opacity:1;background-color:rgb(55 65 81 / var(--tw-bg-opacity, 1))}.bg-gray-800{--tw-bg-opacity:1;background-color:rgb(31 41 55 / var(--tw-bg-opacity, 1))}.bg-purple-500{--tw-bg-opacity:1;background-color:rgb(168 85 247 / var(--tw-bg-opacity, 1))}.p-10{padding:2.5rem}.p-2{padding:0.5rem}.p-4{padding:1rem}.px-2{padding-left:0.5rem;padding-right:0.5rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.pl-4{padding-left:1rem}.pr-4{padding-right:1rem}.text-center{text-align:center}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.font-bold{font-weight:700}.font-semibold{font-weight:600}.text-blue-400{--tw-text-opacity:1;color:rgb(96 165 250 / var(--tw-text-opacity, 1))}.text-gray-400{--tw-text-opacity:1;color:rgb(156 163 175 / var(--tw-text-opacity, 1))}.text-green-400{--tw-text-opacity:1;color:rgb(74 222 128 / var(--tw-text-opacity, 1))}.text-orange-400{--tw-text-opacity:1;color:rgb(251 146 60 / var(--tw-text-opacity, 1))}.text-purple-400{--tw-text-opacity:1;color:rgb(192 132 252 / var(--tw-text-opacity, 1))}</style></head>
+ <body class="">
+  <div class="slide flex flex-col p-10" style=" overflow: hidden;">
+   <!-- Header -->
+   <div class="mb-6">
+    <h1 class="text-4xl font-bold mb-2">
+     Creating Simple API Endpoints
+    </h1>
+    <div class="w-32 h-1 bg-purple-500">
+    </div>
+   </div>
+   <!-- Main Content -->
+   <div class="flex flex-1">
+    <!-- Left Column -->
+    <div class="w-1/2 pr-4">
+     <!-- Hello World Endpoint -->
+     <div class="endpoint-card bg-gray-800 rounded-lg p-4 mb-4">
+      <div class="flex items-center mb-2">
+       <i class="fas fa-globe text-blue-400 mr-2 text-xl">
+       </i>
+       <h3 class="text-xl font-semibold">
+        Hello World Endpoint
+       </h3>
+      </div>
+      <div class="code-block text-sm">
+       <span class="comment">
+        // GET /api/hello
+       </span>
+       <br/>
+       <span class="keyword">
+        import
+       </span>
+       express
+       <span class="keyword">
+        from
+       </span>
+       <span class="string">
+        &#39;express&#39;
+       </span>
+       ;
+       <br/>
+       <br/>
+       <span class="keyword">
+        const
+       </span>
+       router = express.Router();
+       <br/>
+       <br/>
+       <span class="keyword">
+        router
+       </span>
+       .get(
+       <span class="string">
+        &#39;/&#39;
+       </span>
+       ,
+       <span class="function">
+        (req, res)
+       </span>
+       =&gt; {
+       <br/>
+       res.json({
+       <br/>
+       message:
+       <span class="string">
+        &#39;Hello from Backend!&#39;
+       </span>
+       ,
+       <br/>
+       timestamp:
+       <span class="keyword">
+        new
+       </span>
+       Date()
+       <br/>
+       });
+       <br/>
+       });
+       <br/>
+      </div>
+     </div>
+     <!-- URL Parameters -->
+     <div class="endpoint-card bg-gray-800 rounded-lg p-4">
+      <div class="flex items-center mb-2">
+       <i class="fas fa-link text-green-400 mr-2 text-xl">
+       </i>
+       <h3 class="text-xl font-semibold">
+        URL Parameters
+       </h3>
+      </div>
+      <div class="code-block text-sm">
+       <span class="comment">
+        // GET /api/hello/:name
+       </span>
+       <br/>
+       <span class="keyword">
+        router
+       </span>
+       .get(
+       <span class="string">
+        &#39;/:name&#39;
+       </span>
+       ,
+       <span class="function">
+        (req, res)
+       </span>
+       =&gt; {
+       <br/>
+       <span class="keyword">
+        const
+       </span>
+       { name } = req.params;
+       <span class="comment">
+        // Get from URL
+       </span>
+       <br/>
+       <br/>
+       res.json({
+       <br/>
+       message:
+       <span class="string">
+        `Hello, ${name}!`
+       </span>
+       ,
+       <br/>
+       timestamp:
+       <span class="keyword">
+        new
+       </span>
+       Date()
+       <br/>
+       });
+       <br/>
+       });
+       <br/>
+      </div>
+     </div>
+    </div>
+    <!-- Right Column -->
+    <div class="w-1/2 pl-4">
+     <!-- POST Request -->
+     <div class="endpoint-card bg-gray-800 rounded-lg p-4 mb-4">
+      <div class="flex items-center mb-2">
+       <i class="fas fa-paper-plane text-orange-400 mr-2 text-xl">
+       </i>
+       <h3 class="text-xl font-semibold">
+        POST Request
+       </h3>
+      </div>
+      <div class="code-block text-sm">
+       <span class="comment">
+        // POST /api/hello
+       </span>
+       <br/>
+       <span class="keyword">
+        router
+       </span>
+       .post(
+       <span class="string">
+        &#39;/&#39;
+       </span>
+       ,
+       <span class="function">
+        (req, res)
+       </span>
+       =&gt; {
+       <br/>
+       <span class="keyword">
+        const
+       </span>
+       { name, age } = req.body;
+       <span class="comment">
+        // Get from request body
+       </span>
+       <br/>
+       <br/>
+       <span class="comment">
+        // Validation
+       </span>
+       <br/>
+       <span class="keyword">
+        if
+       </span>
+       (!name || !age) {
+       <br/>
+       res.status(400).json({
+       <span class="highlight">
+        error
+       </span>
+       :
+       <span class="string">
+        &#39;Name and age are required&#39;
+       </span>
+       });
+       <br/>
+       <span class="keyword">
+        return
+       </span>
+       ;
+       <br/>
+       }
+       <br/>
+       <br/>
+       res.json({
+       <br/>
+       message:
+       <span class="string">
+        `Hello, ${name}! You are ${age} years old.`
+       </span>
+       ,
+       <br/>
+       timestamp:
+       <span class="keyword">
+        new
+       </span>
+       Date()
+       <br/>
+       });
+       <br/>
+       });
+       <br/>
+      </div>
+     </div>
+     <!-- HTTP Request Parts -->
+     <div class="bg-gray-800 rounded-lg p-4">
+      <div class="flex items-center mb-2">
+       <i class="fas fa-info-circle text-purple-400 mr-2 text-xl">
+       </i>
+       <h3 class="text-xl font-semibold">
+        HTTP Request Parts
+       </h3>
+      </div>
+      <div class="grid grid-cols-2 gap-2">
+       <div class="bg-gray-700 p-2 rounded">
+        <div class="text-green-400 font-semibold">
+         Method
+        </div>
+        <div class="text-sm">
+         GET, POST, PUT, DELETE
+        </div>
+       </div>
+       <div class="bg-gray-700 p-2 rounded">
+        <div class="text-green-400 font-semibold">
+         URL
+        </div>
+        <div class="text-sm">
+         /api/users, /api/products/:id
+        </div>
+       </div>
+       <div class="bg-gray-700 p-2 rounded">
+        <div class="text-green-400 font-semibold">
+         Headers
+        </div>
+        <div class="text-sm">
+         Content-Type, Authorization
+        </div>
+       </div>
+       <div class="bg-gray-700 p-2 rounded">
+        <div class="text-green-400 font-semibold">
+         Body
+        </div>
+        <div class="text-sm">
+         JSON data sent with request
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+   <!-- Footer -->
+   <div class="mt-4 text-center text-gray-400 text-sm">
+    <p>
+     Test with:
+     <span class="bg-gray-700 px-2 py-1 rounded">
+      curl -X GET http://localhost:5000/api/hello
+     </span>
+    </p>
+   </div>
+  </div>
+ 
+
+</body></html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html><html lang="zh"><head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   API Testing and Integration
+  </title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
+  <script src="https://d3js.org/d3.v7.min.js">
+  </script>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <style>
+   body {width: 1280px; min-height: 736px; overflow: hidden; margin: 0;
+            padding: 0;}
+        .slide {
+            width: 1280px;
+            min-height: 736px;
+            position: relative;
+            background: linear-gradient(to bottom right, #f5f5f5, #e0e0e0);
+            color: #333333;
+        }
+        .code-block {
+            font-family: 'Courier New', monospace;
+            background-color: #2d2d2d;
+            color: #f5f5f5;
+            border-radius: 4px;
+            padding: 12px;
+            overflow-x: auto;
+        }
+    
+html {
+    overflow: hidden;
+}
+  </style>
+ <style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.relative{position:relative}.mb-2{margin-bottom:0.5rem}.mb-3{margin-bottom:0.75rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mr-2{margin-right:0.5rem}.mt-4{margin-top:1rem}.flex{display:flex}.grid{display:grid}.h-1{height:0.25rem}.h-48{height:12rem}.h-full{height:100%}.w-1\/3{width:33.333333%}.w-24{width:6rem}.flex-grow{flex-grow:1}.grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.flex-col{flex-direction:column}.items-center{align-items:center}.justify-between{justify-content:space-between}.gap-6{gap:1.5rem}.rounded-lg{border-radius:0.5rem}.bg-blue-100{--tw-bg-opacity:1;background-color:rgb(219 234 254 / var(--tw-bg-opacity, 1))}.bg-green-100{--tw-bg-opacity:1;background-color:rgb(220 252 231 / var(--tw-bg-opacity, 1))}.bg-purple-100{--tw-bg-opacity:1;background-color:rgb(243 232 255 / var(--tw-bg-opacity, 1))}.bg-purple-600{--tw-bg-opacity:1;background-color:rgb(147 51 234 / var(--tw-bg-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.p-10{padding:2.5rem}.p-3{padding:0.75rem}.p-4{padding:1rem}.text-center{text-align:center}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.font-bold{font-weight:700}.font-medium{font-weight:500}.font-semibold{font-weight:600}.text-blue-600{--tw-text-opacity:1;color:rgb(37 99 235 / var(--tw-text-opacity, 1))}.text-blue-700{--tw-text-opacity:1;color:rgb(29 78 216 / var(--tw-text-opacity, 1))}.text-gray-600{--tw-text-opacity:1;color:rgb(75 85 99 / var(--tw-text-opacity, 1))}.text-gray-700{--tw-text-opacity:1;color:rgb(55 65 81 / var(--tw-text-opacity, 1))}.text-gray-800{--tw-text-opacity:1;color:rgb(31 41 55 / var(--tw-text-opacity, 1))}.text-green-600{--tw-text-opacity:1;color:rgb(22 163 74 / var(--tw-text-opacity, 1))}.text-purple-600{--tw-text-opacity:1;color:rgb(147 51 234 / var(--tw-text-opacity, 1))}.text-purple-700{--tw-text-opacity:1;color:rgb(126 34 206 / var(--tw-text-opacity, 1))}.shadow-md{--tw-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}</style></head>
+ <body class="">
+  <div class="slide flex flex-col p-10" style=" overflow: hidden;">
+   <!-- Header -->
+   <div class="mb-6">
+    <h1 class="text-4xl font-bold mb-2 text-gray-800">
+     API Testing and Integration
+    </h1>
+    <div class="w-24 h-1 bg-purple-600">
+    </div>
+   </div>
+   <!-- Main Content -->
+   <div class="grid grid-cols-2 gap-6 flex-grow">
+    <!-- Left Column: cURL Commands -->
+    <div class="flex flex-col">
+     <h2 class="text-2xl font-semibold mb-3 text-gray-700 flex items-center">
+      <i class="fas fa-terminal mr-2 text-purple-600">
+      </i>
+      Testing with cURL
+     </h2>
+     <div class="bg-white rounded-lg shadow-md p-4 mb-4">
+      <h3 class="text-lg font-medium mb-2 text-purple-700">
+       Create Product (POST)
+      </h3>
+      <div class="code-block text-sm">
+       curl -X POST http://localhost:5000/api/product \
+                         -H &#34;Content-Type: application/json&#34; \
+                         -d &#39;{&#34;id&#34;:&#34;P001&#34;,&#34;name&#34;:&#34;Laptop&#34;,&#34;price&#34;:25000,&#34;stock&#34;:10,&#34;category&#34;:&#34;Electronics&#34;}&#39;
+      </div>
+     </div>
+     <div class="bg-white rounded-lg shadow-md p-4 mb-4">
+      <h3 class="text-lg font-medium mb-2 text-purple-700">
+       Get All Products (GET)
+      </h3>
+      <div class="code-block text-sm">
+       curl http://localhost:5000/api/product
+      </div>
+     </div>
+     <div class="bg-white rounded-lg shadow-md p-4">
+      <h3 class="text-lg font-medium mb-2 text-purple-700">
+       Update &amp; Delete
+      </h3>
+      <div class="code-block text-sm mb-2">
+       curl -X PUT http://localhost:5000/api/product/P001 \
+                         -H &#34;Content-Type: application/json&#34; \
+                         -d &#39;{&#34;price&#34;:22000,&#34;stock&#34;:8}&#39;
+      </div>
+      <div class="code-block text-sm">
+       curl -X DELETE http://localhost:5000/api/product/P001
+      </div>
+     </div>
+    </div>
+    <!-- Right Column: Flow and Integration -->
+    <div class="flex flex-col">
+     <!-- Request-Response Flow -->
+     <h2 class="text-2xl font-semibold mb-3 text-gray-700 flex items-center">
+      <i class="fas fa-exchange-alt mr-2 text-green-600">
+      </i>
+      Request-Response Flow
+     </h2>
+     <div class="bg-white rounded-lg shadow-md p-4 mb-4 relative h-48">
+      <div class="flex justify-between items-center h-full">
+       <!-- Client -->
+       <div class="w-1/3 text-center">
+        <div class="bg-blue-100 rounded-lg p-3">
+         <i class="fas fa-laptop text-3xl text-blue-600 mb-2">
+         </i>
+         <div class="font-medium">
+          Client
+         </div>
+        </div>
+       </div>
+       <!-- Server -->
+       <div class="w-1/3 text-center">
+        <div class="bg-green-100 rounded-lg p-3">
+         <i class="fas fa-server text-3xl text-green-600 mb-2">
+         </i>
+         <div class="font-medium">
+          Server
+         </div>
+        </div>
+       </div>
+       <!-- Database -->
+       <div class="w-1/3 text-center">
+        <div class="bg-purple-100 rounded-lg p-3">
+         <i class="fas fa-database text-3xl text-purple-600 mb-2">
+         </i>
+         <div class="font-medium">
+          Database
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+     <!-- Router-Controller Integration -->
+     <h2 class="text-2xl font-semibold mb-3 text-gray-700 flex items-center">
+      <i class="fas fa-plug mr-2 text-blue-600">
+      </i>
+      Router-Controller Integration
+     </h2>
+     <div class="bg-white rounded-lg shadow-md p-4">
+      <h3 class="text-lg font-medium mb-2 text-blue-700">
+       Router (product.ts)
+      </h3>
+      <div class="code-block text-sm mb-3">
+       router.post(&#39;/&#39;, createProduct);  // POST /api/product
+                        router.get(&#39;/&#39;, getAllProducts); // GET /api/product
+      </div>
+      <h3 class="text-lg font-medium mb-2 text-blue-700">
+       Controller (index.ts)
+      </h3>
+      <div class="code-block text-sm">
+       export const createProduct = async (req: Request, res: Response) =&gt; {
+                          // Handle create logic
+                        };
+      </div>
+     </div>
+    </div>
+   </div>
+   <!-- Footer Note -->
+   <div class="mt-4 text-center text-gray-600 text-sm">
+    <p>
+     Pro Tip: Always test your APIs thoroughly with different scenarios
+    </p>
+   </div>
+  </div>
+ 
+
+</body></html>
