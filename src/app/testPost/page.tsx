@@ -98,7 +98,7 @@ export default function TestPost() {
           variant="h4" 
           component="h1" 
           gutterBottom
-          sx={{ color: '#473472', fontWeight: 600 }}
+          sx={{ color: '#C9B59C', fontWeight: 600 }}
         >
           สร้างข้อความ
         </Typography>

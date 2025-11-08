@@ -50,7 +50,7 @@ export default function CreateShortIdPage() {
             <Typography 
               variant="h4" 
               component="h1"
-              sx={{ color: '#473472', fontWeight: 600 }}
+              sx={{ color: '#C9B59C', fontWeight: 600 }}
             >
               สร้าง Short ID
             </Typography>

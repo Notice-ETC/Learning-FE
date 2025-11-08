@@ -168,7 +168,7 @@ export default function SlidePage() {
     } catch (error) {
       console.error('Error loading slide:', error)
       setSlideContent(
-        `<div style="padding: 50px; text-align: center; color: #D6F4ED;"><h1>Error loading slide ${slideNumber}</h1></div>`,
+        `<div style="padding: 50px; text-align: center; color: #F9F8F6;"><h1>Error loading slide ${slideNumber}</h1></div>`,
       )
     } finally {
       setLoading(false)
@@ -215,10 +215,10 @@ export default function SlidePage() {
       className="w-full h-screen overflow-hidden relative"
       onKeyDown={handleKeyDown}
       tabIndex={0}
-      style={{ outline: 'none', backgroundColor: '#473472' }}
+      style={{ outline: 'none', backgroundColor: '#C9B59C' }}
     >
       {loading ? (
-        <div className="flex items-center justify-center h-full" style={{ color: '#D6F4ED' }}>
+        <div className="flex items-center justify-center h-full" style={{ color: '#F9F8F6' }}>
           <div className="text-2xl">Loading slide {currentSlide}...</div>
         </div>
       ) : (
@@ -249,7 +249,7 @@ export default function SlidePage() {
       )}
 
       {/* Navigation indicators */}
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 px-4 py-2 rounded-lg z-50 pointer-events-none" style={{ backgroundColor: 'rgba(71, 52, 114, 0.7)', color: '#D6F4ED' }}>
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 px-4 py-2 rounded-lg z-50 pointer-events-none" style={{ backgroundColor: 'rgba(201, 181, 156, 0.7)', color: '#F9F8F6' }}>
         <span className="text-sm font-semibold">
           {currentSlide} / {TOTAL_SLIDES}
         </span>
@@ -265,11 +265,11 @@ export default function SlidePage() {
           disabled={currentSlide === 1}
           className="px-4 py-2 rounded disabled:opacity-50 disabled:cursor-not-allowed transition-all"
           style={{ 
-            backgroundColor: 'rgba(214, 244, 237, 0.2)', 
-            color: '#D6F4ED',
+            backgroundColor: 'rgba(249, 248, 246, 0.2)', 
+            color: '#F9F8F6',
           }}
-          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(214, 244, 237, 0.3)'}
-          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(214, 244, 237, 0.2)'}
+          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(249, 248, 246, 0.3)'}
+          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(249, 248, 246, 0.2)'}
           aria-label="Previous slide"
         >
           ← Previous
@@ -279,11 +279,11 @@ export default function SlidePage() {
           disabled={currentSlide === TOTAL_SLIDES}
           className="px-4 py-2 rounded disabled:opacity-50 disabled:cursor-not-allowed transition-all"
           style={{ 
-            backgroundColor: 'rgba(214, 244, 237, 0.2)', 
-            color: '#D6F4ED',
+            backgroundColor: 'rgba(249, 248, 246, 0.2)', 
+            color: '#F9F8F6',
           }}
-          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(214, 244, 237, 0.3)'}
-          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(214, 244, 237, 0.2)'}
+          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(249, 248, 246, 0.3)'}
+          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(249, 248, 246, 0.2)'}
           aria-label="Next slide"
         >
           Next →
@@ -291,7 +291,7 @@ export default function SlidePage() {
       </div>
 
       {/* Instructions */}
-      <div className="absolute top-4 right-4 px-4 py-2 rounded-lg text-sm z-50 pointer-events-none" style={{ backgroundColor: 'rgba(71, 52, 114, 0.7)', color: '#D6F4ED' }}>
+      <div className="absolute top-4 right-4 px-4 py-2 rounded-lg text-sm z-50 pointer-events-none" style={{ backgroundColor: 'rgba(201, 181, 156, 0.7)', color: '#F9F8F6' }}>
         <div>Enter: Next | Backspace: Previous</div>
       </div>
     </div>

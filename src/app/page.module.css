@@ -1,13 +1,13 @@
 .page {
-  --background: #D6F4ED;
-  --foreground: #fff;
+  --background: #EFE9E3;
+  --foreground: #F9F8F6;
 
-  --text-primary: #473472;
-  --text-secondary: #53629E;
+  --text-primary: #C9B59C;
+  --text-secondary: #D9CFC7;
 
-  --button-primary-hover: #53629E;
-  --button-secondary-hover: #87BAC3;
-  --button-secondary-border: #87BAC3;
+  --button-primary-hover: #D9CFC7;
+  --button-secondary-hover: #EFE9E3;
+  --button-secondary-border: #D9CFC7;
 
   display: flex;
   min-height: 100vh;
@@ -84,7 +84,7 @@
 }
 
 a.primary {
-  background: #473472;
+  background: #C9B59C;
   color: #fff;
   gap: 8px;
 }
@@ -128,14 +128,14 @@ a.secondary {
   }
 
   .page {
-    --background: #473472;
-    --foreground: #53629E;
+    --background: #C9B59C;
+    --foreground: #D9CFC7;
 
-    --text-primary: #D6F4ED;
-    --text-secondary: #87BAC3;
+    --text-primary: #F9F8F6;
+    --text-secondary: #EFE9E3;
 
-    --button-primary-hover: #87BAC3;
-    --button-secondary-hover: #53629E;
-    --button-secondary-border: #87BAC3;
+    --button-primary-hover: #EFE9E3;
+    --button-secondary-hover: #D9CFC7;
+    --button-secondary-border: #D9CFC7;
   }
 }
