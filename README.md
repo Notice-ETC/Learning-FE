@@ -62,8 +62,14 @@ frontend/
 │   │   ├── page.tsx            # หน้าแรก
 │   │   ├── page.module.css     # Styles สำหรับหน้าแรก
 │   │   ├── globals.css         # Global styles
+│   │   ├── testPost/           # หน้า POST form สำหรับสร้างข้อความ
+│   │   │   └── page.tsx
+│   │   ├── testGet/            # หน้า GET สำหรับสร้าง Short ID
+│   │   │   └── page.tsx
 │   │   └── slide/
 │   │       └── page.tsx        # หน้า slide
+│   ├── ThemeWebsite/           # Material-UI Theme Provider
+│   │   └── index.tsx           # WebsiteThemeProvider component
 │   ├── components/             # Reusable components (ยังไม่มี)
 │   ├── services/               # API services (ยังไม่มี)
 │   ├── types/                  # TypeScript types (ยังไม่มี)
@@ -243,6 +249,92 @@ npm run format:check  # ตรวจสอบว่ามีโค้ดที�
 
 ---
 
+## 🎨 Theme และสีของเว็บไซต์
+
+โปรเจกต์นี้ใช้ชุดสีเฉพาะที่กำหนดไว้ใน `src/ThemeWebsite/index.tsx`:
+
+### สีที่ใช้
+
+- **Primary**: `#473472` (ม่วงเข้ม) - ใช้สำหรับข้อความหลักและปุ่ม
+- **Secondary**: `#53629E` (ม่วงอ่อน) - ใช้สำหรับข้อความรอง
+- **Background**: `#D6F4ED` (เขียวอ่อน) - ใช้สำหรับพื้นหลัง
+- **Accent**: `#87BAC3` (ฟ้าอ่อน) - ใช้สำหรับองค์ประกอบเสริม
+
+### การใช้งาน WebsiteThemeProvider
+
+`WebsiteThemeProvider` เป็น wrapper component ที่จัดการ Material-UI theme สำหรับทั้งเว็บไซต์
+
+**ตัวอย่างการใช้งาน:**
+
+```tsx
+'use client'
+
+import { WebsiteThemeProvider } from '@/ThemeWebsite'
+import { Container, Typography } from '@mui/material'
+
+export default function MyPage() {
+  return (
+    <WebsiteThemeProvider>
+      <Container>
+        <Typography variant="h4">หน้าเว็บของฉัน</Typography>
+      </Container>
+    </WebsiteThemeProvider>
+  )
+}
+```
+
+**หมายเหตุ:** ควร wrap component ที่ใช้ Material-UI components ด้วย `WebsiteThemeProvider` เพื่อให้สีและ theme ทำงานถูกต้อง
+
+### หน้าตัวอย่างที่ใช้ Theme
+
+- **`/testPost`** - หน้า POST form สำหรับสร้างข้อความ
+- **`/testGet`** - หน้า GET สำหรับสร้าง Short ID
+
+ทั้งสองหน้านี้ใช้ `WebsiteThemeProvider` และ Card component ที่มี:
+- `borderRadius: 8px`
+- `boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.1)'`
+
+## 📄 หน้าตัวอย่าง
+
+### TestPost Page (`/testPost`)
+
+หน้า POST form สำหรับส่งข้อความไปยัง Backend API endpoint `/createText`
+
+**คุณสมบัติ:**
+- Form สำหรับกรอกข้อความ (multiline text field)
+- Validation (ตรวจสอบว่ามีข้อความก่อนส่ง)
+- Loading state ขณะส่งข้อมูล
+- Error handling และแสดง error message
+- Success message เมื่อส่งสำเร็จ
+- แสดง response data ในรูปแบบ JSON
+- ใช้ Card component พร้อม shadow และ rounded corners
+
+**ตัวอย่างการใช้งาน:**
+
+1. เปิดหน้า `/testPost`
+2. กรอกข้อความในช่อง text field
+3. กดปุ่ม "ส่งข้อมูล"
+4. ระบบจะส่ง POST request ไปยัง `/createText` endpoint
+5. แสดงผลลัพธ์ (success/error) และ response data
+
+### TestGet Page (`/testGet`)
+
+หน้า GET สำหรับเรียก API endpoint `/createShortId` เพื่อสร้าง Short ID ใหม่
+
+**คุณสมบัติ:**
+- ปุ่มสำหรับสร้าง Short ID
+- Loading state ขณะเรียก API
+- แสดง Short ID ที่สร้างได้
+- Error handling
+- ใช้ Card component พร้อม shadow และ rounded corners
+
+**ตัวอย่างการใช้งาน:**
+
+1. เปิดหน้า `/testGet`
+2. กดปุ่ม "สร้าง Short ID"
+3. ระบบจะส่ง GET request ไปยัง `/createShortId` endpoint
+4. แสดง Short ID ที่สร้างได้
+
 ## 🧪 ตัวอย่างเรียก API
 
 ### Client Component (ใช้ State)
@@ -371,6 +463,19 @@ React Compiler จะช่วย optimize re-renders และ memoization อ�
 - `src/services/` - API service functions
 - `src/types/` - TypeScript type definitions
 - `src/utils/` - Utility functions (axios, helpers, etc.)
+- `src/ThemeWebsite/` - Material-UI Theme Provider สำหรับทั้งเว็บไซต์
+
+### การตั้งค่า API Base URL
+
+สำหรับหน้า `testGet` ใช้ environment variable `NEXT_PUBLIC_API_BASE_URL`:
+
+```env
+NEXT_PUBLIC_API_BASE_URL=http://localhost:5000
+```
+
+ถ้าไม่กำหนด จะใช้ค่า default `http://localhost:5000`
+
+**หมายเหตุ:** สำหรับหน้า `testPost` ใช้ relative path `/createText` ซึ่งจะเรียกไปยัง Next.js API route หรือ proxy ไปยัง backend (ขึ้นอยู่กับการตั้งค่า)
 
 ---
 
